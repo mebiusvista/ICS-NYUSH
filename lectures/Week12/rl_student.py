@@ -83,7 +83,12 @@ class Agent():
         for i in range(len(self.Q)):
             qstr += str(self.Q[i]) + '\n'
         return qstr
-        
+
+    def polish(self):
+        for i in range(len(self.Q)):
+            for j in range(len(self.Q[i])):
+                self.Q[i][j] = round(self.Q[i][j])
+            
 if __name__ == "__main__":
     ''' set up the world'''
     w = World(R_room, 5)
@@ -129,6 +134,7 @@ if __name__ == "__main__":
             
         num_iter += 1
         if num_iter % report_steps == 0:
+            agent.polish()
             print(agent)
             
         if interactive:
